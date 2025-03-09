@@ -1,0 +1,40 @@
+ScreenManager:
+    HomeScreen:
+    CameraScreen:
+    ResultScreen:
+
+<HomeScreen>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Upload a Dress Image"
+            font_size: 24
+        FileChooserListView:
+            on_selection: root.select_file(self.selection)
+        Button:
+            text: "Open Camera"
+            on_press: root.manager.current = "camera"
+
+<CameraScreen>:
+    name: "camera"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            id: cam_feed
+        Button:
+            text: "Capture & Save"
+            on_press: root.capture_image()
+        Button:
+            text: "Back to Home"
+            on_press: root.manager.current = "home"
+
+<ResultScreen>:
+    name: "result"
+    BoxLayout:
+        orientation: "vertical"
+        Image:
+            id: result_img
+        Button:
+            text: "Try Again"
+            on_press: root.restart()
